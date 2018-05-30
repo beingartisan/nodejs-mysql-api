@@ -1,6 +1,14 @@
+// Load environment variables
+var dotenv = require('dotenv');
+dotenv.load();
+// require('dotenv').config();
+
 var express = require('express');
 var bodyParser = require('body-parser');
-var projects = require('./src/projects');
+
+// Import project files
+var projectsFactory = require('./src/services/projectsFactory')();
+var projects = require('./src/controller/projects');
 
 // Start app
 var app = express();
@@ -13,8 +21,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get("/", function (req, res) {
-    console.log('at get');
-    res.json(projects.getProjects());
+    projectsFactory.getProjects(function(err, data){
+        if(err){
+            res.json("Unable to retrieve data. " + err);
+        }
+        res.json(data);
+    });    
+    
 });
 
 app.post("/", function (req, res) {

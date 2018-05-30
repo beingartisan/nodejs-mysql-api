@@ -4,13 +4,15 @@
   "description": "Projects API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodejs app.js"
   },
   "author": "RTM",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
-    "pg": "^7.4.3"
+    "mysql": "^2.15.0"
   }
 }
